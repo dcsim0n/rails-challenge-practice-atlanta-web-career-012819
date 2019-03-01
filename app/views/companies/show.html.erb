@@ -1,1 +1,8 @@
 <h2><%= @company.name %></h2>
+
+<h4>Floors rented by building</h4>
+<ul>
+    <% @company.get_floors.each do |building, floors| %>
+        <li><%= "#{building}: #{floors.join(", ")}" %></li>
+    <% end %>
+</ul>
