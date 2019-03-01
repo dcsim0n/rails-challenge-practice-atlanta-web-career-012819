@@ -1,0 +1,18 @@
+<h2>Building Details for: <%= @building.name %></h2>
+<h4>Location: <%= @building.country %></h4>
+<p>Address: <%= @building.address %></p>
+<table class="striped">
+    <tr>
+        <th>Floor #</th>
+        <th>Company Name</th>
+        <th>Rent</th>
+    </tr>
+    <% (1..@building.number_of_floors).each_with_index do |i| %>
+      <tr>
+        <td><%= i %></td>
+        <% office = @building.offices.find_by(floor: i) %>
+        <td><%= office != nil ? office.company.name : "None" %></td>
+        <td><%= number_to_currency(@building.rent_per_floor) %></td>
+      </tr>
+    <% end %>
+</table>
