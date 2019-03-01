@@ -13,12 +13,11 @@ class CompaniesController < ApplicationController
         # Iterate over keys as building_id
         #   then iterate over value as floors
         #   and create office for each
-        binding.pry
         # company_params[:offices_attributes].each do |key,vaule|
 
         #         office[:building_id] = valu[:id]
         #         office[:floor] = 
-            
+        binding.pry
     end
 
     private
