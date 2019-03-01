@@ -20,11 +20,16 @@
 			<%= b_field.hidden_field :id %>
 			<div class="input_field">
 			<% b_field.label b.name %>
-			<%# <% binding.pry %>
+			
 			<!-- before ccb -->
 			
 			<%= b_field.collection_check_boxes :offices, b.empty_offices, :floor, :floor, include_hidden: false do |cb| %>
-				<%= cb.label(class:"input_field") {cb.check_box + cb.text} %>
+				<%= cb.label(class:"input_field") do %>
+					<%= cb.check_box %>
+					<span>
+					<%= "#{cb.text}" %>
+					</span>
+				<% end %>
 			<% end %>
 			<!-- after ccb -->
 			</div>
