@@ -1,4 +1,4 @@
-<%= form_for @company do |f| %>
+<%= form_for @company , :html => {class: "", id: ""} do |f| %>
 	<ul>
 		<% if @company.errors.any? %>
 			<%= @company.errors.full_messages.each do |msg| %>
@@ -8,18 +8,26 @@
 	</ul>
 
 <p>Company Details</p>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-
+	<div class="col s4">
+		<div class="input_field">
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</div>
+	</div>
 <p>Building Floors Available</p>
 	<% Building.all.each do |b| %>
 		<%= f.fields_for :offices, b do |b_field| %>
 			<%= b_field.hidden_field :id %>
-			<%= b_field.label b.name %>
+			<div class="input_field">
+			<% b_field.label b.name %>
 			<%# <% binding.pry %>
 			<!-- before ccb -->
-			<%= b_field.collection_check_boxes :offices, b.empty_offices, :floor, :floor, include_hidden: false %>
+			
+			<%= b_field.collection_check_boxes :offices, b.empty_offices, :floor, :floor, include_hidden: false do |cb| %>
+				<%= cb.label(class:"input_field") {cb.check_box + cb.text} %>
+			<% end %>
 			<!-- after ccb -->
+			</div>
 		<% end %>
 		<br/>
 	<% end %>
